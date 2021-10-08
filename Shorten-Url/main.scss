@@ -1,0 +1,281 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 10px;
+  background-color: #20b2aa;
+}
+
+.wrapper {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 800px;
+
+  form {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+  }
+
+  i {
+    position: absolute;
+    width: 50px;
+    text-align: center;
+    font-size: 25px;
+    color: #c4c4c4;
+    pointer-events: none;
+  }
+
+  input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: 2px solid #ddd;
+    padding: 0 120px 0 42px;
+    caret-color: #20b2aa;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+  ::placeholder {
+    color: #c4c4c4;
+  }
+
+  button {
+    position: absolute;
+    right: 6px;
+    padding: 5px 15px;
+    background-color: #20b2aa;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+form input:valid ~ button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+form input:valid {
+  border: 2px solid #20b2aa;
+}
+
+form input:valid ~ i {
+  color: #20b2aa;
+}
+
+.wrapper a {
+  color: #000;
+}
+
+.wrapper .count {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 6px;
+  align-items: center;
+
+  span {
+    font-size: 16px;
+
+    span {
+      font-weight: bolder;
+    }
+  }
+
+  a {
+    &:hover {
+      color: #20b2aa;
+    }
+  }
+}
+
+.wrapper .urls-area {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  max-height: 450px;
+  overflow-y: scroll;
+}
+
+.urls-area :is(.title, .data) {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.urls-area li {
+  list-style: none;
+  width: 100%;
+  border-right: 1px solid #ddd;
+}
+
+.urls-area .title li {
+  text-align: center;
+  background-color: #f2f2f2;
+  padding: 10px 0;
+}
+
+.urls-area .data li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  word-break: break-all;
+}
+
+.urls-area li:nth-child(1) {
+  max-width: 30%;
+}
+
+.urls-area li:nth-child(2) {
+  max-width: 45%;
+}
+.urls-area li:nth-child(3) {
+  max-width: 15%;
+}
+.urls-area li:nth-child(4) {
+  max-width: 15%;
+}
+
+.urls-area .data li a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  &:hover {
+    color: #20b2aa;
+    text-decoration: underline;
+  }
+}
+
+.urls-area .data li:last-child a:hover {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.urls-area .data li:last-child {
+  border-right: none;
+}
+
+.urls-area .data:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.blur-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.popup-box {
+  position: absolute;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  max-width: 450px;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.popup-box.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.popup-box .info-box {
+  color: #0f5753;
+  background-color: #bef4f1;
+  border: 1px solid #7de8e3;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  align-items: center;
+}
+
+.popup-box .info-box.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.popup-box form {
+  position: relative;
+  margin-top: 10px;
+}
+
+.popup-box form label {
+  font-size: 18px;
+  display: block;
+}
+
+.popup-box form .copy-icon {
+  position: absolute;
+  right: 10px;
+  z-index: 50;
+  top: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  color: #ddd;
+  transform: translateY(-85%);
+}
+
+form .copy-icon:hover {
+  color: #20b2aa;
+}
+
+.popup-box form input {
+  height: 45px;
+  border: 1px solid #ddd;
+  padding: 0 35px 0 15px;
+  margin-top: 3px;
+  width: 100%;
+  font-size: 20px;
+}
+
+.popup-box form button {
+  margin-top: 10px;
+  padding: 5px 15px;
+  background-color: #20b2aa;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
